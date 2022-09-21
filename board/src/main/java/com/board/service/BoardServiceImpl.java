@@ -32,4 +32,39 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+
+	@Override
+	public BoardVO view(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.view(bno);
+	}
+
+
+	@Override
+	public void modify(BoardVO vo) throws Exception {
+		dao.modify(vo);
+		
+	}
+
+
+	@Override
+	public void delete(int bno) throws Exception {
+		dao.delete(bno);
+		
+	}
+
+
+	@Override
+	public int count() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.count();
+	}
+
+
+	// 게시물 목록 + 페이징
+	@Override
+	public List listPage(int displayPost, int postNum) throws Exception {
+	 return dao.listPage(displayPost, postNum);
+	}
+
 }

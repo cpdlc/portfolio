@@ -19,9 +19,51 @@
 		insert into
 			tbl_board(title,content,writer)
 				values(#{title}, #{content}, #{writer})
-	
-	
 	</insert>
-
-
+	
+	<!-- 게시물 조회 -->
+	<select id="view" parameterType="int" resultType="com.board.domain.BoardVO">
+		SELECT
+			bno,title,content,writer,regDate,viewCnt
+		FROM
+			tbl_board
+		WHERE
+			bno = #{bno}
+	
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<update id="modify" parameterType="com.board.domain.BoardVO">
+		UPDATE tbl_board
+			SET
+				title = #{title},
+				content = #{content},
+				writer = #{writer}
+			where bno = #{bno}
+	
+	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE 
+			FROM tbl_board 
+			WHERE bno = #{bno}
+	</delete>
+	
+	<!-- 게시물 총 개수 -->
+	<select id="count" resultType="int">
+		select count(bno) from tbl_board
+	</select>
+	
+	<!-- 게시물 목록 + 페이징 -->
+	<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
+		select
+			bno,title,writer,regDate,viewCnt
+		from tbl_board
+		order by bno desc
+			limit #{displayPost}, #{postNum}
+	
+	</select>
+	
+	
 </mapper>

@@ -40,5 +40,42 @@
 		
 		
 	</table>
+	
+	<div>
+	<c:if test="${page.prev}">
+ <span>[ <a href="/board/listPage?num=${page.startPageNum - 1}">이전</a> ] 
+</c:if>
+
+<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+ <span>
+ 
+  <c:if test="${select != num}">
+   <a href="/board/listPage?num=${num}">${num}</a>
+  </c:if>    
+  
+  <c:if test="${select == num}">
+   <b>${num}</b>
+  </c:if>
+    
+  
+</c:forEach>
+
+<c:if test="${page.next}">
+ <span>[ <a href="/board/listPage?num=${page.endPageNum + 1}">다음</a> ] 
+</c:if>
+	
+	
+	<%-- 
+ <c:forEach begin="1" end="${pageNum}" var="num">
+    <span>
+     <a href="/board/listPage?num=${num}">${num}</a>
+   
+ </c:forEach>--%>
+</div>
+	
+	
+	
+	
+	
 </body>
 </html>
